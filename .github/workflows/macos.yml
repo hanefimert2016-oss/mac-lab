@@ -1,17 +1,23 @@
-name: MacOS_Hacker_Lab_V2
+name: MacOS_Direct_Access
 on: workflow_dispatch
 
 jobs:
   build:
     runs-on: macos-latest
     steps:
-    - name: MacOS_Sistemini_Hazirla
+    - name: MacOS_Sistemini_Tani
       run: |
-        echo "Sistem hazirlaniyor..."
+        echo "--- Islemci Detaylari ---"
+        sysctl -a | grep machdep.cpu.brand_string
+        echo "--- macOS Versiyonu ---"
         sw_vers
+        echo "--- Disk Durumu ---"
+        df -h
         
-    - name: Alternatif_Baglanti_Kur
-      uses: mxschmitt/action-tmate@v3
-      with:
-        limit-access-to-actor: false
-        install-dependencies: true
+    - name: Kendi_Komutunu_Yaz
+      run: |
+        # Buraya istedigin komutu yazabilirsin
+        echo "Sistem su an senin emrinde!"
+        # Ornegin: bir dosya olusturalim
+        echo "Main Processor Tasarimi v1.0" > hayalim.txt
+        cat hayalim.txt
